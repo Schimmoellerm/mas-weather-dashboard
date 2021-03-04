@@ -1,5 +1,7 @@
 const openWeatherAPIKey = '0a8a1f2fd6c733eb862c93d061533b6a'
 
+
+
 /*Search Button************************************************/
 
 $('#searchBtn').on("click", function(){
@@ -28,6 +30,17 @@ $('#searchBtn').on("click", function(){
         currentTemp.append("<p>" + "Humidity: " + response.main.humidity + "%" + "</p>");
         currentTemp.append("<p>" + "Wind Speed: " + response.wind.speed + "</p>");
     })
+
+    //UV Index
+    //let UVurl = `https://api.openweathermap.org/data/2.5/uvi?appid=0a8a1f2fd6c733eb862c93d061533b6a&lat=${response.coord.lat}&lon=${response.coord.lon}`;
+
+    //$.ajax({
+       // url: UVurl,
+       // method: "GET"
+   // }).then(function (response){
+      //  let UV = currentTemp.append("<p>" + "UV Index: " + response.value + "<p>")
+      //  currentTemp.append(UV);
+    //});
 
 
     //Five Day Forecast
