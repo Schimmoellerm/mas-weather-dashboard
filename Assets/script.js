@@ -38,8 +38,11 @@ $('#searchBtn').on("click", function(){
         let fiveDays = [0, 8, 16, 24, 32];
         let fiveDayWeather = $('#fiveDayWeather')
         
+        
         fiveDays.forEach(function(i) {
-            fiveDayWeather.append(`<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temperature: " + response.list[i].main.temp + "</p>" + "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>");
+            fiveDayWeather.append(`<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">`);
+            fiveDayWeather.append("<p>" + "Temperature: " + response.list[i].main.temp + "</p>");
+            fiveDayWeather.append("<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>");
         })
     });
 });
