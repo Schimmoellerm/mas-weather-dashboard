@@ -21,7 +21,7 @@ $('#searchBtn').on("click", function(){
         let currentCity = currentWeather.append('<p>');
         currentWeather.append(currentCity);
 
-        //Temperature
+        //Temperature, Humidity, Wind Speed
         let currentTemp = currentCity.append("<p>");
         currentCity.append(currentTemp);
         currentTemp.append("<p>" + "Temperature: " + response.main.temp + "</p>");
@@ -31,7 +31,17 @@ $('#searchBtn').on("click", function(){
 
 
     //Five Day Forecast
-    
+    $.ajax({
+        url: fiveDayUrl,
+        method: "GET"
+    }).then(function (response) {
+        let fiveDays = [0, 8, 16, 24, 32];
+        let fiveDayWeather = $('#fiveDayWeather')
+        
+        fiveDays.forEach(function(i) {
+            fiveDayWeather.append(`<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temperature: " + response.list[i].main.temp + "</p>" + "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>");
+        })
+    });
 });
 
 
