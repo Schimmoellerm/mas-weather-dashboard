@@ -1,10 +1,29 @@
 const openWeatherAPIKey = '0a8a1f2fd6c733eb862c93d061533b6a'
 
+let localStorageItem = 0;
 
+
+for (let i=0; i < localStorage.length; i++) {
+    let city = localStorage.getItem(i);
+    let listDiv = $('#container');
+    listDiv.append("<button>" + city + "</button>");
+}
+
+/*Clear Button************************************************/
+
+$('#clearBtn').on('click', function(){
+    window.location.reload();
+    localStorage.clear();
+})
 
 /*Search Button************************************************/
 
 $('#searchBtn').on("click", function(){
+    weatherCall();
+});
+    
+//Weather Call Function
+function weatherCall() {
     let input = $('#searchInput').val();
     console.log(input);
 
@@ -13,7 +32,7 @@ $('#searchBtn').on("click", function(){
 
     let fiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + input + "&Appid=" + openWeatherAPIKey + "&units=imperial";
     console.log(fiveDayUrl);
-
+    
     //Current Weather
     $.ajax({
         url: currentWeatherUrl,
@@ -24,6 +43,12 @@ $('#searchBtn').on("click", function(){
         let currentCity = currentWeather.append('<p>');
         currentWeather.append(currentCity);
         //let weatherIcon = response.data.weather[0].icon;
+
+        let listDiv = $('#container');
+        listDiv.append("<button>" + response.name + "</button>");
+
+        localStorage.setItem(localStorageItem, response.name);
+        localStorageItem++;
 
         //Date
         let CurrentDay = moment().format('L');
@@ -89,7 +114,7 @@ $('#searchBtn').on("click", function(){
             //fiveDayWeather.append("</div")
         })
     });
-});
+}
 
 
 
