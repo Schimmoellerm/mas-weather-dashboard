@@ -20,6 +20,7 @@ $('#searchBtn').on("click", function(){
         method: "GET"
     }).then(function (response) {
         let currentWeather = $("#currentWeather").append("<div>");
+        currentWeather.empty();
         let currentCity = currentWeather.append('<p>');
         currentWeather.append(currentCity);
 
@@ -29,17 +30,17 @@ $('#searchBtn').on("click", function(){
         currentTemp.append("<p>" + "Temperature: " + response.main.temp + "</p>");
         currentTemp.append("<p>" + "Humidity: " + response.main.humidity + "%" + "</p>");
         currentTemp.append("<p>" + "Wind Speed: " + response.wind.speed + "</p>");
-    })
+    });
 
     //UV Index
-    //let UVurl = `https://api.openweathermap.org/data/2.5/uvi?appid=0a8a1f2fd6c733eb862c93d061533b6a&lat=${response.coord.lat}&lon=${response.coord.lon}`;
+    //let UVurl = `http://api.openweathermap.org/data/2.5/uvi?lat=${response.lat}&lon=${response.lon}&appid=0a8a1f2fd6c733eb862c93d061533b6a`;
 
     //$.ajax({
-       // url: UVurl,
-       // method: "GET"
-   // }).then(function (response){
-      //  let UV = currentTemp.append("<p>" + "UV Index: " + response.value + "<p>")
-      //  currentTemp.append(UV);
+       //url: UVurl,
+       //method: "GET"
+   //}).then(function (response){
+      //let currentUV = currentCity.append("<p>" + "UV Index: " + response.value + "<p>")
+      //currentCity.append(currentUV)
     //});
 
 
@@ -50,6 +51,7 @@ $('#searchBtn').on("click", function(){
     }).then(function (response) {
         let fiveDays = [0, 8, 16, 24, 32];
         let fiveDayWeather = $('#fiveDayWeather')
+        fiveDayWeather.empty();
         
         
         fiveDays.forEach(function(i) {
