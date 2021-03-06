@@ -11,14 +11,18 @@
     font-size: 17px;
   }
 
-.container {
-    background-color: lightgrey;
-}
-
 .fiveDayWeather{
     background-color: deepskyblue;
     display: inline-block;
     margin: 5px;
     padding: 5px;
     color: white;
+}
+
+.uvIndex span {
+    background-color: red;
+}
+
+.custom {
+    background-color: lightgrey;
 }
