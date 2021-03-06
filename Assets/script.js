@@ -37,14 +37,15 @@ $('#searchBtn').on("click", function(){
         currentTemp.append("<p>" + "Humidity: " + response.main.humidity + "%" + "</p>");
         currentTemp.append("<p>" + "Wind Speed: " + response.wind.speed + "</p>");
         //UV Index
-        let lat = response.data.coord.lat;
-        let lon = response.data.coord.lon;
+
+        let lat = response.coord.lat;
+        let lon = response.coord.lon;
         let UVurl = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + openWeatherAPIKey + "&cnt=1";
         $.ajax({
             url: UVurl,
             method: "GET"
         }).then(function (response){
-           let currentUV = currentCity.append("<p>" + "UV Index: " + response.value + "<p>")
+           let currentUV = currentCity.append("<p>" + "UV Index: " + response[0].value + "<p>")
            currentTemp.append(currentUV)
          });
     });
@@ -75,10 +76,17 @@ $('#searchBtn').on("click", function(){
             let fiveDayDate = new Date(response.list[i].dt * 1000);
             fiveDayDate = fiveDayDate.toLocaleDateString("en-US");
 
-            fiveDayWeather.append("<h5>" + fiveDayDate + "</h5>");
-            fiveDayWeather.append(`<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">`);
-            fiveDayWeather.append("<p>" + "Temperature: " + response.list[i].main.temp + "</p>");
-            fiveDayWeather.append("<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>");
+            fiveDayWeather.append("<div class='fiveDayWeather'>" + 
+                                  "<h5>" + fiveDayDate + "</h5>" + 
+                                  `<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` +
+                                  "<p>" + "Temperature: " + response.list[i].main.temp + "</p>" +
+                                  "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" +
+                                  "</div")
+            //fiveDayWeather.append("<h5>" + fiveDayDate + "</h5>");
+            //fiveDayWeather.append(`<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">`);
+            //fiveDayWeather.append("<p>" + "Temperature: " + response.list[i].main.temp + "</p>");
+            //fiveDayWeather.append("<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>");
+            //fiveDayWeather.append("</div")
         })
     });
 });

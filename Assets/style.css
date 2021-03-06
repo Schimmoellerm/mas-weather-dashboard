@@ -14,3 +14,11 @@
 .container {
     background-color: lightgrey;
 }
+
+.fiveDayWeather{
+    background-color: deepskyblue;
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+    color: white;
+}
